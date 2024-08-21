@@ -8,8 +8,8 @@ const config = new Configuration({
 if (!process.env.GEMINI_API_KEY) {
   throw new Error("GEMINI API KEY IS REQUIRED");
 }
-const openai = new OpenAIApi(config);
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+export const openai = new OpenAIApi(config);
+export const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function useGeminiApi(text: string) {
   try {

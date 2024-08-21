@@ -4,6 +4,8 @@ import { useChat } from "ai/react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { SendIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import ChatMessage from "./ChatMessage";
 
 const Chat = () => {
   const { input, handleInputChange, handleSubmit, messages } = useChat();
@@ -17,7 +19,7 @@ const Chat = () => {
       {/* Message List */}
       <div className="flex flex-col">
         {messages.map((message) => {
-          return <div>Hello {message.role}</div>;
+          return <ChatMessage key={message.id} message={message} />;
         })}
       </div>
       <form

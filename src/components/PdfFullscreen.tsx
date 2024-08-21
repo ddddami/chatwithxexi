@@ -22,7 +22,7 @@ const PdfFullscreen = ({ fileUrl }: PdfFullscreenProps) => {
   return (
     <Dialog
       open={isOpen}
-      onOpenChange={(v) => {
+      onOpenChange={(v: any) => {
         if (!v) {
           setIsOpen(v);
         }

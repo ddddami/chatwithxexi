@@ -28,22 +28,20 @@ export default async function ChatPage({ params: { chatId } }: Props) {
   const currentChat = _chats.find((chat) => chat.id === parseInt(chatId));
   console.log(currentChat);
 
-  
   if (!currentChat) {
     return redirect("/");
   }
 
   return (
-    <div className="min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2 flex">
-      <div className="w-full min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2 flex">
+    <div className="min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex">
+      <div className="w-full min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex">
         {/* Chat Sidebar */}
         <div className="flex-[1] max-w-xs">
           <ChatSideBar chats={_chats} chatId={parseInt(chatId)} />
         </div>
         {/* PDF viewer */}
-        <div className="max-h-screen p-4 overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2 flex-[5]">
-          <PdfRenderer  url={currentChat.pdfUrl}/>
-          {/* <PDFViewer pdfUrl={currentChat.pdfUrl} /> */}
+        <div className="max-h-screen p-4 overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex-[5]">
+          <PdfRenderer url={currentChat.pdfUrl} />
         </div>
         {/* Chatting section */}
         <div className="flex-[3] border-l-4 border-l-slate-200">
