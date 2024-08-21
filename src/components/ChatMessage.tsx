@@ -1,14 +1,9 @@
 import { cn } from "@/lib/utils";
+import { Message } from "ai";
 import { BotIcon, UserIcon } from "lucide-react";
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-  createdAt: string | Date;
-}
-
 type Props = {
-  message: Message | any;
+  message: Message;
 };
 
 function ChatMessage({ message }: Props) {
@@ -19,7 +14,7 @@ function ChatMessage({ message }: Props) {
         "justify-start": message.role === "assistant",
       })}
     >
-      {message.role === "assistant" && <BotIcon />}
+      {message.role === "assistant" && <BotIcon className="mx-2" />}
 
       <div
         className={cn("px-4 py-2 rounded-lg max-w-xs", {
@@ -29,11 +24,11 @@ function ChatMessage({ message }: Props) {
       >
         <p>{message.content}</p>
         <span className="text-xs text-gray-500">
-          {new Date(message.createdAt).toLocaleTimeString()}
+          {message.createdAt?.toLocaleString()}
         </span>
       </div>
 
-      {message.role === "user" && <UserIcon />}
+      {message.role === "user" && <UserIcon className="mx-2" />}
     </div>
   );
 }
