@@ -8,8 +8,8 @@ import Providers from "@/components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Chat With XeXi",
-  description: "Chat with XeXi, a teachy chatbot",
+  title: "Chat With renAI",
+  description: "Chat with renAI, a teachy chatbot",
 };
 
 export default function RootLayout({

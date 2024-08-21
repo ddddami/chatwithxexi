@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Chat with PDF Documentation
 
-## Getting Started
+### Overview
 
-First, run the development server:
+**Chat with PDF software** allows users to upload and interact with an AI that can understand and answer questions based on the content of the uploaded PDFs. This software is designed to help users quickly access and retrieve information frm large documents, manuals, research papers, and more through an interactive chat interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 1. Uploading a PDF
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Upload using the dropzone provided in the home page
+- Select the pdf you want to chat with.
+- Wait for the upload to complete.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### 2. Chatting with PDF
 
-## Learn More
+- After uploading the PDF, a chat session will be created automatically using the pdf content
+- Begin asking questions or requesting information. For example, you can ask "What is the main topic of chapter 2?" or "Can you summarize the section on Data Security?"
 
-To learn more about Next.js, take a look at the following resources:
+#### 3. Upload multiple PDF following the same steps as above
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Interacting with the AI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### **Sample commands**
 
-## Deploy on Vercel
+**General Questions:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Search Queries:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Summaries:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
+
+**Navigation:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
+
+### **Response Format**
+
+- The AI provides reponses in that are driectly derived from the content of the PDF. IF applicable, it will reference the page number, section title, or paragraph to give context to its response"
+
+### **Response Format**
+
+- The AI provides reponses in that are driectly derived from the content of the PDF. IF applicable, it will reference the page number, section title, or paragraph to give context to its response"
