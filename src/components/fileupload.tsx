@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 const FileUpload: React.FC = () => {
   const router = useRouter();
   const [uploadedPercentage, setUploadedPercentage] = useState<number>(0);
+  const [isCreatingChatroom, setIsCreatingChatroom] = useState<boolean>(false);
 
   const { mutate, isPending, isSuccess, isError } = useMutation({
     mutationFn: async ({
@@ -25,6 +26,7 @@ const FileUpload: React.FC = () => {
       downloadUrl: string;
     }) => {
       try {
+        setIsCreatingChatroom(true);
         const response = await axios.post("/api/create-chat", {
           fileKey,
           fileName,
@@ -63,10 +65,9 @@ const FileUpload: React.FC = () => {
           },
           {
             onSuccess({ chatId }) {
-              // console.log(data);
-              // toast.success(data.message);
               toast.success("Chat created!");
               router.push(`/chat/${chatId}`);
+              setIsCreatingChatroom(false);
             },
             onError(error) {
               toast.error("Error creating chat.");
@@ -126,11 +127,18 @@ const FileUpload: React.FC = () => {
         })}
       >
         <input {...getInputProps()} />
-        {isPending ? (
+        {isCreatingChatroom ? (
           <>
             <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
             <p className="mt-2 text-sm text-slate-400">
-              Xexi is in action.....
+              renAI is creating chatroom.....
+            </p>
+          </>
+        ) : isPending ? (
+          <>
+            <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
+            <p className="mt-2 text-sm text-slate-400">
+              renAI is analyzing document.....
             </p>
           </>
         ) : uploadedPercentage ? (
@@ -139,10 +147,10 @@ const FileUpload: React.FC = () => {
               type={"bars"}
               color={"blue"}
               height={"20%"}
-              width={uploadedPercentage.toString()}
+              width={uploadedPercentage.toString() + "10%"}
             />
             <p className="mt-2 text-sm text-slate-400">
-              Xexi is in action.....
+              Uploading pdf document.....
             </p>
           </>
         ) : (
