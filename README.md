@@ -1,8 +1,16 @@
-## Chat with PDF Documentation
+## Renai
 
 ### Overview
 
-**Chat with PDF software** allows users to upload and interact with an AI that can understand and answer questions based on the content of the uploaded PDFs. This software is designed to help users quickly access and retrieve information frm large documents, manuals, research papers, and more through an interactive chat interface.
+**Renai,** a Chat with PDF app allows users to upload and interact with an AI that can understand and answer questions based on the content of the uploaded PDFs. This app is designed to help users (specifically college users) quickly get information from large documents, manuals, research papers through an interactive chat experience.
+
+### Problem
+In my university, students struggle with understanding and retaining large amounts of course material. Basically there are large amount of course materials, all scattered everywhere. This issue is because of the lack of personalized study aids. Because of this, many students find it difficult to efficiently review their notes, ask relevant questions, and get clear explanations tailored to their specific needs.
+
+Related SDG: 4 (Quality Education)
+
+### Solution
+Renai addresses this issue by converting course material (PDFs) into chat conversations. It allows students to upload course materials and ask questions based on those materials. This makes studying more interactive, accessible, and tailored to individual learning needs, thereby improving comprehension and academic performance.
 
 ### Key Features
 
@@ -19,22 +27,6 @@
 
 #### 3. Upload multiple PDF following the same steps as above
 
-### Interacting with the AI
 
-### **Sample commands**
 
-**General Questions:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
 
-**Search Queries:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
-
-**Summaries:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
-
-**Navigation:** "What does the documents say about X?" or "Can you explain the procedure outlined in chapter 5?"
-
-### **Response Format**
-
-- The AI provides reponses in that are driectly derived from the content of the PDF. IF applicable, it will reference the page number, section title, or paragraph to give context to its response"
-
-### **Response Format**
-
-- The AI provides reponses in that are driectly derived from the content of the PDF. IF applicable, it will reference the page number, section title, or paragraph to give context to its response"
