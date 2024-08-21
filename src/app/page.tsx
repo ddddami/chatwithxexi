@@ -23,10 +23,16 @@ export default async function Home() {
             {isAuth && <Button>Go to Chats</Button>}
           </div>
 
-          <p className="max-w-xl mt-2 text-lg text-slate-600">
+          {/* <p className="max-w-xl mt-2 text-lg text-slate-600">
             Join millions of students, researchers, and professionals to
             instantly answer questions and understand research with{" "}
             <span className="font-bold">renai AI</span>
+          </p> */}
+          <p className="p-8 text-lg text-slate-600">
+            A powerful application that enables you to interact with your PDFs,
+            <span className="block"></span>
+            more like you have your frinedly lecturer explaining tha tough
+            course to you😉
           </p>
 
           <div className="w-full mt-4">
