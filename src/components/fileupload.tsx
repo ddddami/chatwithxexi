@@ -123,7 +123,7 @@ const FileUpload: React.FC = () => {
       <div
         {...getRootProps({
           className:
-            "border-dashed border-2 rounded-xl cursor-pointer bg-transparent py-8 flex justify-center items-center flex-col",
+            "border-dashed border-2 border-white rounded-xl cursor-pointer bg-transparent py-8 flex justify-center items-center flex-col",
         })}
       >
         <input {...getInputProps()} />
