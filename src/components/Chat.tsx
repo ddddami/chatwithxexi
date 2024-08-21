@@ -4,7 +4,7 @@ import { useChat } from "ai/react";
 import { Input } from "./ui/input";
 
 const Chat = () => {
-  const { input, handleInputChange, handleSubmit } = useChat();
+  const { input, handleInputChange, handleSubmit, messages } = useChat();
   return (
     <div className="relate max-h-screen overflow-scroll">
       {/* Header */}
@@ -13,7 +13,13 @@ const Chat = () => {
       </div>
 
       {/* Message List */}
-      <div className="flex flex-col"></div>
+      <div className="flex flex-col">
+        {
+          messages.map((message) => {
+            return <div>Hello {message.content}</div>
+          })
+        }
+      </div>
       <form onSubmit={handleSubmit}>
         <Input
           value={input}
