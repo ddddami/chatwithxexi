@@ -13,12 +13,12 @@ const Navbar = async ({ isAuth }: Props) => {
     <nav className="flex justify-between px-10 py-5 bg-transparent">
       <h1 className="font-bold text-xl">renAI</h1>
       {userId ? (
-        <p className="flex items-center gap-1">
+        <div className="flex items-center gap-1">
           Welcome, <span className="font-semibold">{"Ahmad"}</span>{" "}
           <div className="flex justify-center items-center p-1 rounded-full">
             <UserButton afterSignOutUrl="/" />
           </div>
-        </p>
+        </div>
       ) : (
         <Link href={"/sign-in"}>Login</Link>
       )}

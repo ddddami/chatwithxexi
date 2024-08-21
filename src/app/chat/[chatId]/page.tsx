@@ -1,5 +1,6 @@
 import Chat from "@/components/Chat";
 import ChatSideBar from "@/components/ChatSideBar";
+import PdfRenderer from "@/components/PDFRenderer";
 import PDFViewer from "@/components/pdfviewer";
 import { db } from "@/lib/db";
 import { chats } from "@/lib/db/schema";
@@ -27,6 +28,7 @@ export default async function ChatPage({ params: { chatId } }: Props) {
   const currentChat = _chats.find((chat) => chat.id === parseInt(chatId));
   console.log(currentChat);
 
+  
   if (!currentChat) {
     return redirect("/");
   }
@@ -40,7 +42,8 @@ export default async function ChatPage({ params: { chatId } }: Props) {
         </div>
         {/* PDF viewer */}
         <div className="max-h-screen p-4 overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2 flex-[5]">
-          <PDFViewer pdfUrl={currentChat.pdfUrl} />
+          <PdfRenderer  url={currentChat.pdfUrl}/>
+          {/* <PDFViewer pdfUrl={currentChat.pdfUrl} /> */}
         </div>
         {/* Chatting section */}
         <div className="flex-[3] border-l-4 border-l-slate-200">
