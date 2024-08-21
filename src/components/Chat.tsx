@@ -2,13 +2,15 @@
 import React from "react";
 import { useChat } from "ai/react";
 import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { SendIcon } from "lucide-react";
 
 const Chat = () => {
   const { input, handleInputChange, handleSubmit, messages } = useChat();
   return (
-    <div className="relate max-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2">
+    <div className="relate relative h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2">
       {/* Header */}
-      <div className="stickt top-0 inset-x-0 p-2 bg-white h-fit">
+      <div className="sticky top-0 inset-x-0 p-2 bg-white h-fit">
         <h3 className="text-xl font-bold">Chat</h3>
       </div>
 
@@ -18,13 +20,19 @@ const Chat = () => {
           return <div>Hello {message.role}</div>;
         })}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center gap-2 absolute bottom-2 w-full px-2"
+      >
         <Input
           value={input}
           onChange={handleInputChange}
           placeholder={"Ask renai...."}
-          className="w-full"
+          className="w-full outline-none"
         />
+        <Button className="bg-blue-600 text-white">
+          <SendIcon />
+        </Button>
       </form>
     </div>
   );
