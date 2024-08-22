@@ -1,5 +1,5 @@
 DO $$ BEGIN
- CREATE TYPE "public"."xexi_user_enum" AS ENUM('xexi', 'user');
+ CREATE TYPE "public"."assistant_user_enum" AS ENUM('assistant', 'user');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS "messages" (
 	"chat_id" integer NOT NULL,
 	"content" text NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"sentBy" "xexi_user_enum" NOT NULL
+	"role" "assistant_user_enum" NOT NULL
 );
 --> statement-breakpoint
 DO $$ BEGIN

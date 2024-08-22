@@ -1,6 +1,6 @@
 {
-  "id": "2601fab6-1d6b-4715-a89b-09b6c542c37c",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "25db44b4-2dfc-4fd9-ae31-2952b34368a2",
+  "prevId": "2601fab6-1d6b-4715-a89b-09b6c542c37c",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -114,7 +114,8 @@
       "schema": "public",
       "values": [
         "assistant",
-        "user"
+        "user",
+        "system"
       ]
     }
   },
