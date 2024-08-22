@@ -1,18 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useChat } from "ai/react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { SendIcon } from "lucide-react";
+import { CalculatorIcon, SendIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ChatMessage from "./ChatMessage";
 import Typing from "./Typing";
+import Modal from "./Modal";
+import Calculator from "./Calculator";
 
 type Props = {
   chatId: number;
 };
 
 const Chat = ({ chatId }: Props) => {
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const { input, handleInputChange, handleSubmit, messages, isLoading } =
     useChat({
       api: "/api/chat",
@@ -33,6 +36,16 @@ const Chat = ({ chatId }: Props) => {
   }, [messages]);
   return (
     <div className="h-screen flex flex-col">
+      {/* Top Pane */}
+      <div className="border">
+        <button
+          onClick={() => setModalOpen(true)}
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
+          <CalculatorIcon className="bg-red-400" />
+        </button>
+      </div>
+
       {/* Header */}
       <div className="sticky top-0 inset-x-0 p-2 bg-white h-fit">
         <h3 className="text-xl font-bold">Chat</h3>
@@ -63,6 +76,9 @@ const Chat = ({ chatId }: Props) => {
           <SendIcon />
         </Button>
       </form>
+      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+        <Calculator />
+      </Modal>
     </div>
   );
 };

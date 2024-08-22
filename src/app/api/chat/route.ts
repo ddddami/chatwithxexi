@@ -36,14 +36,16 @@ export async function POST(req: Request) {
     const fileKey = _chats[0].fileKey;
     const context = await getContext(lastMessage.content, fileKey);
     const prompt =
-      "Using this context: " + context + " Answer the following questions";
+      "Your name is renai, you are a very smart teachy bot that explains the content of a pdf document which you have previously analyze, using this context drawn from the pdf: BEGINNING OF CONTEXT - " +
+      context +
+      " - END OF CONTEXT. Respond in a very formal manner, like you are a teacher or lecturer.";
 
     const geminiStream = await genAI
       .getGenerativeModel({
         model: "gemini-1.5-flash",
         systemInstruction: context
           ? prompt
-          : "You are a very smart chatbot that can answer any question.",
+          : "Your name is renai, you are a very smart teachy bot that explains the content of a pdf document which you have previously analyze, the user question is not relating to the document very well but provide an answer based on your own understanding, respond in a very formal manner, like you are a teacher or lecturer..",
       })
       .generateContentStream(buildGoogleGenAIPrompt(messages));
 

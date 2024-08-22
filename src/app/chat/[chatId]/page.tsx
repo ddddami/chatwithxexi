@@ -1,11 +1,13 @@
+import Calculator from "@/components/Calculator";
 import Chat from "@/components/Chat";
 import ChatSideBar from "@/components/ChatSideBar";
+import Modal from "@/components/Modal";
 import PdfRenderer from "@/components/PDFRenderer";
-import PDFViewer from "@/components/pdfviewer";
 import { db } from "@/lib/db";
 import { chats } from "@/lib/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
+import { CalculatorIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 // import { eq } from "drizzle-orm"
 
