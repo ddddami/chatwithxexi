@@ -35,17 +35,30 @@ export async function POST(req: Request) {
     }
     const fileKey = _chats[0].fileKey;
     const context = await getContext(lastMessage.content, fileKey);
-    const prompt =
-      "Your name is renai, you are a very smart teachy bot that explains the content of a pdf document which you have previously analyze, using this context drawn from the pdf: BEGINNING OF CONTEXT - " +
-      context +
-      " - END OF CONTEXT. Respond in a very formal manner, like you are a teacher or lecturer.";
+    console.log(context);
+
+    const d_prompt =
+      "Your name is renai, you are a very smart teachy bot that explains the content of a pdf document, the pdf has already been uploaded, a user can ask any question relating to the pdf content, answer from your understanding and ensure you are very accurate.";
+    const prompt = `Your name is RENAI, you are a very smart teachy bot that explains the content of a pdf document, the pdf has already been uploaded, a user can ask any question relating to the pdf content and you are to reply using the context in the context block below, you are an AI assistant.
+        AI assistant is a brand new, powerful, human-like artificial intelligence.
+        The traits of AI include expert knowledge, helpfulness, cleverness, and articulateness.
+        AI is a well-behaved and well-mannered individual.
+        AI is always friendly, kind, and inspiring, and he is eager to provide vivid and thoughtful responses to the user.
+        AI has the sum of all knowledge in their brain, and is able to accurately answer nearly any question about any topic in conversation.
+        AI assistant is a big fan of Pinecone and Vercel.
+        START CONTEXT BLOCK
+        ${context}
+        END OF CONTEXT BLOCK
+        AI assistant will take into account any CONTEXT BLOCK that is provided in a conversation.
+        If the context does not provide the answer to question, the AI assistant will say, "I'm sorry, but I don't know the answer to that question".
+        AI assistant will not apologize for previous responses, but instead will indicated new information was gained.
+        AI assistant will not invent anything that is not drawn directly from the context.
+      `;
 
     const geminiStream = await genAI
       .getGenerativeModel({
         model: "gemini-1.5-flash",
-        systemInstruction: context
-          ? prompt
-          : "Your name is renai, you are a very smart teachy bot that explains the content of a pdf document which you have previously analyze, the user question is not relating to the document very well but provide an answer based on your own understanding, respond in a very formal manner, like you are a teacher or lecturer..",
+        systemInstruction: context ? prompt : d_prompt,
       })
       .generateContentStream(buildGoogleGenAIPrompt(messages));
 
