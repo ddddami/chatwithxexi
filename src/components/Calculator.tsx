@@ -4,12 +4,13 @@ const Calculator = () => {
   const [input, setInput] = useState<string>("");
 
   const handleButtonClick = (value: string) => {
+    console.log(value);
     setInput((prev) => prev + value);
   };
 
   const calculateResult = () => {
     try {
-      setInput(eval(input)); // Not recommended for production, as eval can be dangerous!
+      setInput(eval(input));
     } catch {
       setInput("Error");
     }
@@ -18,7 +19,7 @@ const Calculator = () => {
   const clearInput = () => setInput("");
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-xs w-full">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full">
       <div className="mb-4 p-2 border rounded-lg text-right text-2xl">
         {input || "0"}
       </div>
@@ -27,7 +28,7 @@ const Calculator = () => {
           <button
             key={val}
             onClick={() => handleButtonClick(val)}
-            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300"
+            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300 cursor-pointer"
           >
             {val}
           </button>
@@ -36,7 +37,7 @@ const Calculator = () => {
           <button
             key={val}
             onClick={() => handleButtonClick(val)}
-            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300"
+            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300 cursor-pointer"
           >
             {val}
           </button>
@@ -45,7 +46,7 @@ const Calculator = () => {
           <button
             key={val}
             onClick={() => handleButtonClick(val)}
-            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300"
+            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300 cursor-pointer"
           >
             {val}
           </button>
@@ -56,14 +57,14 @@ const Calculator = () => {
             onClick={() =>
               val === "=" ? calculateResult() : handleButtonClick(val)
             }
-            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300"
+            className="bg-gray-200 p-4 rounded-lg hover:bg-gray-300 cursor-pointer"
           >
             {val}
           </button>
         ))}
         <button
           onClick={clearInput}
-          className="col-span-4 bg-red-400 text-white p-4 rounded-lg hover:bg-red-500"
+          className="col-span-4 bg-red-400 text-white p-4 rounded-lg hover:bg-red-500 cursor-pointer"
         >
           Clear
         </button>

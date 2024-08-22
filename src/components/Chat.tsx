@@ -37,8 +37,8 @@ const Chat = ({ chatId }: Props) => {
       <ChatTopPane />
 
       {/* Header */}
-      <div className="sticky top-0 inset-x-0 p-2 bg-white h-fit">
-        <h3 className="text-xl font-bold">Chat</h3>
+      <div className="sticky top-0 inset-x-0 p-2 h-fit">
+        <h3 className="text-xl font-bold">Chat with renAI</h3>
       </div>
 
       {/* Message List */}
