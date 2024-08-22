@@ -45,7 +45,7 @@ export default async function ChatPage({ params: { chatId } }: Props) {
         </div>
         {/* Chatting section */}
         <div className="flex-[3] border-l-4 border-l-slate-200">
-          <Chat />
+          <Chat chatId={parseInt(chatId)} />
         </div>
       </div>
     </div>

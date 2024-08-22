@@ -16,7 +16,6 @@ async function useGeminiApi(text: string) {
     const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
     const result = await model.embedContent(text);
     const embedding = result.embedding;
-    // console.log("Embeddings", embedding);
     return embedding.values;
   } catch (error) {
     throw error;
@@ -39,21 +38,6 @@ async function useOpenAi(text: string) {
 
 export async function getEmbeddings(text: string) {
   try {
-    // const response = await openai.createEmbedding({
-    //   model: "text-embedding-ada-002",
-    //   input: text.replace(/\n/g, " "),
-    // });
-    // const result = await response.json();
-    // console.log(result);
-    // console.log(result.data[0].embedding);
-    // return result.data[0].embedding as number[];
-
-    // Open AI
-    // const embeddingResult = await useOpenAi(text);
-    // console.log("Embedding Result: ", embeddingResult);
-    // return embeddingResult;
-    // console.log("Embedding result: ", embeddingResult);
-
     // Gemini AI
     const embeddingResult = await useGeminiApi(text);
     return embeddingResult;

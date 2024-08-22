@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Message } from "ai";
 import { BotIcon, UserIcon } from "lucide-react";
+import FormatMarkdown from "./FormatMarkdown";
 
 type Props = {
   message: Message;
@@ -22,7 +23,11 @@ function ChatMessage({ message }: Props) {
           "bg-gray-100 text-gray-800": message.role === "assistant",
         })}
       >
-        <p>{message.content}</p>
+        {message.role === "user" ? (
+          <p>{message.content}</p>
+        ) : (
+          <FormatMarkdown content={message.content} />
+        )}
         <span className="text-xs text-gray-500">
           {message.createdAt?.toLocaleString()}
         </span>

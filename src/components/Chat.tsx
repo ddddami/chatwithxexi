@@ -8,11 +8,29 @@ import { cn } from "@/lib/utils";
 import ChatMessage from "./ChatMessage";
 import Typing from "./Typing";
 
-const Chat = () => {
+type Props = {
+  chatId: number;
+};
+
+const Chat = ({ chatId }: Props) => {
   const { input, handleInputChange, handleSubmit, messages, isLoading } =
     useChat({
       api: "/api/chat",
+      body: {
+        chatId,
+      },
     });
+
+  React.useEffect(() => {
+    const messageContainer = document.getElementById("message-container");
+
+    if (messageContainer) {
+      messageContainer.scrollTo({
+        top: messageContainer.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
   return (
     <div className="h-screen flex flex-col">
       {/* Header */}
@@ -21,7 +39,10 @@ const Chat = () => {
       </div>
 
       {/* Message List */}
-      <div className="flex flex-col flex-1 overflow-y-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2">
+      <div
+        className="flex flex-col flex-1 overflow-y-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2"
+        id="message-container"
+      >
         {messages.map((message) => {
           return <ChatMessage key={message.id} message={message} />;
         })}
