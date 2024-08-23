@@ -8,7 +8,11 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const userXexiEnum = pgEnum("xexi_user_enum", ["xexi", "user"]);
+export const userAssistantEnum = pgEnum("assistant_user_enum", [
+  "assistant",
+  "user",
+  "system",
+]);
 
 export const chats = pgTable("chats", {
   id: serial("id").primaryKey(),
@@ -28,5 +32,5 @@ export const messages = pgTable("messages", {
     .notNull(),
   content: text("content").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-  sentBy: userXexiEnum("sentBy").notNull(),
+  role: userAssistantEnum("role").notNull(),
 });

@@ -1,6 +1,6 @@
 import { getContext } from "@/lib/context";
 import { db } from "@/lib/db";
-import { chats } from "@/lib/db/schema";
+import { chats, messages as _messages } from "@/lib/db/schema";
 import { genAI } from "@/lib/embeddings";
 import { StreamingTextResponse, Message, GoogleGenerativeAIStream } from "ai";
 import { eq } from "drizzle-orm";
@@ -61,7 +61,22 @@ export async function POST(req: Request) {
       })
       .generateContentStream(buildGoogleGenAIPrompt(messages));
 
-    const stream = GoogleGenerativeAIStream(geminiStream);
+    const stream = GoogleGenerativeAIStream(geminiStream, {
+      onStart: async () => {
+        await db.insert(_messages).values({
+          chatId,
+          content: lastMessage.content,
+          role: "user",
+        });
+      },
+      onCompletion: async (completion) => {
+        await db.insert(_messages).values({
+          chatId,
+          content: completion,
+          role: "system",
+        });
+      },
+    });
     return new StreamingTextResponse(stream);
   } catch (error) {
     return new NextResponse("Error getting response from renAI", {

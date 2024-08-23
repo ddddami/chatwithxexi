@@ -3,22 +3,35 @@ import React from "react";
 import { useChat } from "ai/react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { SendIcon } from "lucide-react";
+import { Loader2, SendIcon } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 import Typing from "./Typing";
-// import ChatTopPane from "./ChatTopPane";
+import ChatTopPane from "./ChatTopPane";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Message } from "ai";
 
 type Props = {
   chatId: number;
 };
 
 const Chat = ({ chatId }: Props) => {
+  const { data, isLoading: chatsLoading } = useQuery({
+    queryKey: ["chat", chatId],
+    queryFn: async () => {
+      const response = await axios.post<Message[]>("/api/get-messages", {
+        chatId,
+      });
+      return response.data;
+    },
+  });
   const { input, handleInputChange, handleSubmit, messages, isLoading } =
     useChat({
       api: "/api/chat",
       body: {
         chatId,
       },
+      initialMessages: data || [],
     });
 
   React.useEffect(() => {
@@ -46,9 +59,15 @@ const Chat = ({ chatId }: Props) => {
         className="flex flex-col flex-1 overflow-y-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-w-2"
         id="message-container"
       >
-        {messages.map((message) => {
-          return <ChatMessage key={message.id} message={message} />;
-        })}
+        {chatsLoading ? (
+          <div className="min-h-full flex justify-center items-center">
+            <Loader2 className="w-6 h-6 animate-spin" />
+          </div>
+        ) : (
+          messages.map((message) => {
+            return <ChatMessage key={message.id} message={message} />;
+          })
+        )}
         {isLoading && <Typing />}
       </div>
       <form

@@ -1,5 +1,5 @@
 {
-  "id": "4fdd34c3-a3a3-4359-99bc-a7bd63624af7",
+  "id": "3340e66c-27b6-4337-be8d-3c28ff462cd2",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -80,9 +80,9 @@
           "notNull": true,
           "default": "now()"
         },
-        "sentBy": {
-          "name": "sentBy",
-          "type": "xexi_user_enum",
+        "role": {
+          "name": "role",
+          "type": "assistant_user_enum",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
@@ -109,12 +109,13 @@
     }
   },
   "enums": {
-    "public.xexi_user_enum": {
-      "name": "xexi_user_enum",
+    "public.assistant_user_enum": {
+      "name": "assistant_user_enum",
       "schema": "public",
       "values": [
-        "xexi",
-        "user"
+        "assistant",
+        "user",
+        "system"
       ]
     }
   },
