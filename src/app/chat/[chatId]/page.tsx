@@ -36,13 +36,13 @@ export default async function ChatPage({ params: { chatId } }: Props) {
 
   return (
     <div className="min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex">
-      <div className="w-full min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex">
+      <div className="w-full min-h-screen overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex flex-col md:flex-row">
         {/* Chat Sidebar */}
-        <div className="flex-[1] max-w-xs">
+        <div className="hidden md:block  flex-[1] max-w-xs">
           <ChatSideBar chats={_chats} chatId={parseInt(chatId)} />
         </div>
         {/* PDF viewer */}
-        <div className="max-h-screen p-4 overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex-[5]">
+        <div className="p-4 overflow-scroll scrollbar-thumb-rounded scrollbar-thumb-blue scrollbar-track-blue-lighter scrollbar-none flex-[5]">
           <PdfRenderer url={currentChat.pdfUrl} />
         </div>
         {/* Chatting section */}

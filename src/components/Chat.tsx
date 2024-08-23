@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { SendIcon } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 import Typing from "./Typing";
-import ChatTopPane from "./ChatTopPane";
+// import ChatTopPane from "./ChatTopPane";
 
 type Props = {
   chatId: number;
@@ -34,11 +34,11 @@ const Chat = ({ chatId }: Props) => {
   return (
     <div className="h-screen flex flex-col">
       {/* Top Pane */}
-      <ChatTopPane />
+      {/* <ChatTopPane /> */}
 
       {/* Header */}
       <div className="sticky top-0 inset-x-0 p-2 h-fit">
-        <h3 className="text-xl font-bold">Chat with renAI</h3>
+        <h3 className="text-xl font-bold">Chat</h3>
       </div>
 
       {/* Message List */}

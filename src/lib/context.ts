@@ -14,9 +14,10 @@ export async function getMatchesFromEmbeddings(
 
     const pineconeIndex = client.index("chatwithxexi");
 
-    const namespaceId = convertToAscii(fileKey);
+    // const namespaceId = convertToAscii(fileKey);
+    const namespace = pineconeIndex.namespace(convertToAscii(fileKey));
 
-    const queryResult = await pineconeIndex.namespace(namespaceId).query({
+    const queryResult = await namespace.query({
       topK: 5,
       vector: embeddings,
       includeMetadata: true,

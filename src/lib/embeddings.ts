@@ -11,11 +11,13 @@ if (!process.env.GEMINI_API_KEY) {
 export const openai = new OpenAIApi(config);
 export const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-async function useGeminiApi(text: string) {
+async function geminiApi(text: string) {
   try {
     const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
     const result = await model.embedContent(text);
     const embedding = result.embedding;
+    console.log(embedding.values);
+
     return embedding.values;
   } catch (error) {
     throw error;
@@ -39,7 +41,7 @@ async function useOpenAi(text: string) {
 export async function getEmbeddings(text: string) {
   try {
     // Gemini AI
-    const embeddingResult = await useGeminiApi(text);
+    const embeddingResult = await geminiApi(text);
     return embeddingResult;
   } catch (error: any) {
     console.log("Error calling openai embeddings api", error);

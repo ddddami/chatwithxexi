@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 import Providers from "@/components/Providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] ,   variable: "--font-sans",});
 
 export const metadata: Metadata = {
   title: "Chat With renAI",
@@ -21,7 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <Providers>
         <html lang="en">
-          <body className={inter.className}>
+          <body className={inter.variable}>
             {children}
             <Toaster />
           </body>

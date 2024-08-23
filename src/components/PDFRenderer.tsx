@@ -2,6 +2,8 @@
 
 import {
   ChevronDown,
+  ChevronsDownUp,
+  ChevronsRightLeft,
   ChevronUp,
   Loader2,
   RotateCw,
@@ -16,7 +18,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import { useResizeDetector } from "react-resize-detector";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -49,6 +51,24 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
   const [scale, setScale] = useState<number>(1);
   const [rotation, setRotation] = useState<number>(0);
   const [renderedScale, setRenderedScale] = useState<number | null>(null);
+
+  const [collapsed, setCollapsed] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        setCollapsed(true);
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const isLoading = renderedScale !== scale;
 
@@ -94,7 +114,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             variant="ghost"
             aria-label="previous page"
           >
-            <ChevronDown className="h-4 w-4" />
+            <ChevronUp className="h-4 w-4" />
           </Button>
 
           <div className="flex items-center gap-1.5">
@@ -127,35 +147,11 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             variant="ghost"
             aria-label="next page"
           >
-            <ChevronUp className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4" />
           </Button>
         </div>
 
         <div className="space-x-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button className="gap-1.5" aria-label="zoom" variant="ghost">
-                <Search className="h-4 w-4" />
-                {scale * 100}%
-                <ChevronDown className="h-3 w-3 opacity-50" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem onSelect={() => setScale(1)}>
-                100%
-              </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => setScale(1.5)}>
-                150%
-              </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => setScale(2)}>
-                200%
-              </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => setScale(2.5)}>
-                250%
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
           <Button
             onClick={() => setRotation((prev) => prev + 90)}
             variant="ghost"
@@ -164,13 +160,22 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             <RotateCw className="h-4 w-4" />
           </Button>
 
+          <Button
+            onClick={() => setCollapsed(!collapsed)}
+            variant="ghost"
+            aria-label="collapse"
+          >
+            <ChevronsDownUp size={18} strokeWidth={1.5} />
+          </Button>
+
           <PdfFullscreen fileUrl={url} />
         </div>
       </div>
 
       <div className="flex-1 w-full max-h-screen">
         <SimpleBar autoHide={false} className="max-h-[calc(100vh-10rem)]">
-          <div ref={ref}>
+          <div ref={ref} className={collapsed ? "hidden" : ""}>
+            {/* {!collapsed && ( */}
             <Document
               loading={
                 <div className="flex justify-center">
@@ -214,6 +219,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
                 onRenderSuccess={() => setRenderedScale(scale)}
               />
             </Document>
+            {/* )} */}
           </div>
         </SimpleBar>
       </div>
