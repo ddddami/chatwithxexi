@@ -16,7 +16,6 @@ async function geminiApi(text: string) {
     const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
     const result = await model.embedContent(text);
     const embedding = result.embedding;
-    console.log(embedding.values);
 
     return embedding.values;
   } catch (error) {

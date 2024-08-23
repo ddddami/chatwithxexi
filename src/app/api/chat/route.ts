@@ -35,6 +35,7 @@ export async function POST(req: Request) {
     }
     const fileKey = _chats[0].fileKey;
     const context = await getContext(lastMessage.content, fileKey);
+    console.log("context", context);
 
     const d_prompt =
       "Your name is renai, you are a very smart teachy bot that explains the content of a pdf document, the pdf has already been uploaded, a user can ask any question relating to the pdf content, answer from your understanding and ensure you are very accurate.";
