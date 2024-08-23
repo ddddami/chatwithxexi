@@ -1,5 +1,5 @@
 {
-  "id": "2601fab6-1d6b-4715-a89b-09b6c542c37c",
+  "id": "3340e66c-27b6-4337-be8d-3c28ff462cd2",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -114,7 +114,8 @@
       "schema": "public",
       "values": [
         "assistant",
-        "user"
+        "user",
+        "system"
       ]
     }
   },

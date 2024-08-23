@@ -1,1 +1,0 @@
-ALTER TYPE "assistant_user_enum" ADD VALUE 'system';

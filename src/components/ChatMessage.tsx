@@ -12,15 +12,15 @@ function ChatMessage({ message }: Props) {
     <div
       className={cn("flex items-start mb-4", {
         "justify-end": message.role === "user",
-        "justify-start": message.role === "assistant",
+        "justify-start": message.role === "system",
       })}
     >
-      {message.role === "assistant" && <BotIcon className="mx-2" />}
+      {message.role === "system" && <BotIcon className="mx-2" />}
 
       <div
         className={cn("px-4 py-2 rounded-lg max-w-xs", {
           "bg-blue-100 text-blue-800": message.role === "user",
-          "bg-gray-100 text-gray-800": message.role === "assistant",
+          "bg-gray-100 text-gray-800": message.role === "system",
         })}
       >
         {message.role === "user" ? (

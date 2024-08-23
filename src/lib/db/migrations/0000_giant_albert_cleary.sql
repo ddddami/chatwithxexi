@@ -1,5 +1,5 @@
 DO $$ BEGIN
- CREATE TYPE "public"."assistant_user_enum" AS ENUM('assistant', 'user');
+ CREATE TYPE "public"."assistant_user_enum" AS ENUM('assistant', 'user', 'system');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

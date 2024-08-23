@@ -73,7 +73,7 @@ export async function POST(req: Request) {
         await db.insert(_messages).values({
           chatId,
           content: completion,
-          role: "assistant",
+          role: "system",
         });
       },
     });
